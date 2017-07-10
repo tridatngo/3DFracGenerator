@@ -1,0 +1,10 @@
+#!/bin/csh -f
+
+set repWork = $PWD
+setenv CGAL_DIR /work/irlin104_1/ngotr/Outils/CGAL-4.8.1/ 
+setenv EIGEN3_DIR /work/irlin104_1/ngotr/Outils/eigen
+
+#cmake -DCGAL_DIR=$CGAL_DIR -DEIGEN3_INCLUDE_DIR=$EIGEN3_DIR .
+#cmake -DCGAL_DIR=$CGAL_DIR .
+#cmake -DCGAL_DIR=$CGAL_DIR -DEIGEN3_INCLUDE_DIR=$EIGEN3_DIR -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_ECLIPSE_VERSION=4.3.2 .
+cmake -DCGAL_DIR=$CGAL_DIR -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_ECLIPSE_VERSION=4.6.0 .

@@ -1,0 +1,69 @@
+[DataFile]
+# Data file containing characteristics of fractures
+#dataFile = Data/Rennes/DFN_Rennes_NTD.dat 
+#dataFile = ParameterFiles/ellipse_input.dat_v4 
+#dataFile = ParameterFiles/ellipse_input.dat_v2_ok
+dataFile = ParameterFiles/ellipse_input.dat_v5
+
+##########################################
+[Density]
+# Density parameter n4. Default value of n4 = 160
+n4 = 160 
+
+##########################################
+[SpatialParams]
+# Los Alamos
+DFNBB_LowerLeftX = -0.9 # [m] x-coordinate of the lower left bounding box corner
+DFNBB_LowerLeftY = -0.5 # [m] y-coordinate of the lower left bounding box corner
+DFNBB_LowerLeftZ = -0.325 # [m] z-coordinate of the lower left bounding box corner
+DFNBB_UpperRightX = 0.9 # [m] x-coordinate of the upper right bounding box corner
+DFNBB_UpperRightY = 0.5 # [m] y-coordinate of the upper right bounding box corner
+DFNBB_UpperRightZ = 0.325 # [m] z-coordinate of the upper right bounding box corner
+
+
+##########################################
+[AddingPointsMethod]
+
+# Choose the adding points method (addingPointsMethod)
+# 1/ addingPointMethod = 1 (default): Along the intersection between two polygons P1 and P2, the intermediate points are added
+# with a density equal to 1/(min(dl1,dl2)), where dl1 dl2 denote the characteristic length of P1 and P2, respectively.
+# 
+# 2/ addingPointMethod = 2: The intermediate points lie on only-P1-segment will be added with a density 1/dl1.
+# The intermediate points lie on only-P2-segment will be added with a density 1/dl1. The intermediate points lie on
+# common segments will be added with a density 1/(min(dl1,dl2)).
+
+addingPointsMethod = 1
+
+###########################################
+[DiscreMethod]
+# Choose the discretization method (discreMethod)
+# 1/ discreMethod = 1 (default) : Choose the number n4. Every ellipse will be approximated by a polygon consisting of n4 points.
+#
+# 2/ discreMethod = 2 : Choose the number n4. Compute valDens = distance(p_min,p_max) / n4. This is the characteristic
+# length for all polygon --> Homogeneous mesh.
+
+discreMethod = 2 
+
+###########################################
+[RemoveClosePoints]
+removeClosePoints = 1 # default removeClosePoints = 0
+minLengthRatio = 0.25 # This parameter is taken into account if and only if removeClosePoints = 1. Default minLengthRatio = 0.1
+mergeCloseIntersectionPoints = 1 # default mergeCloseIntersectionPoints = 0, if =1, crit_length = 0.05* CGAL::min(cEll_1.E_target_edge_length, cEll_2.E_target_edge_length)
+mergeClosePointsRelCritLength = 0.10 # Merge too close points : distance between two pts is less than 10% the target edge length
+
+###########################################
+[CleanUpDirectory]
+# clean up directory : delete *.lgi, *.mlgi, *.inp temporary files
+# 0: Do not delete any temporary file
+# 1: Remove mesh_*.lgi, *.mlgi, *.inp
+# 2: Remove *.lgi, *.mlgi, *.inp and part_*.lg
+cleanupDirectory = 1
+
+###########################################
+[ParametersLaGriT]
+dataForDFNWorks = 0 	# create data for DFNWorks 
+correctMesh = 1         # correct mesh to add tiny mesh pieces, default = 1
+paramFilePrecision = 1  # setprecision(12) for parameters files
+inverseSignTheta = 1    # default inverseSignTheta = 1
+EPS_INT = 1.0e-06       # Default EPS_INT = 1E-5
+EPS_FILTER = 1.0e-06    # Default EPS_FILTER = 1E-4
